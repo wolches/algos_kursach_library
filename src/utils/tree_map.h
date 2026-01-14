@@ -150,6 +150,9 @@ private:
         return size(node->left) + size(node->right) + 1;
     }
 
+    /**
+     * Симметричный обход дерева1
+     */
     void collectValues(tree_node<K, V> *node, std::vector<V> &result) const {
         if (node == nullptr) return;
         collectValues(node->left, result);

@@ -19,6 +19,7 @@ public:
     reader_id(std::wstring value);
     std::wstring getValue() const;
     wchar_t getAccess() const;
+    void setAccess(wchar_t value);
     short getId() const;
     short getYear() const;
 };

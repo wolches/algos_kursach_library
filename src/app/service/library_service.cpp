@@ -34,12 +34,13 @@ void library_service::registerReader(const std::wstring &readerAccess, const int
     readerRepo.save(r);
 }
 
-void library_service::editReader(const std::wstring &readerId, const std::wstring &fullName, short yearOfBirth,
+void library_service::editReader(const std::wstring &readerId, const std::wstring &access, const std::wstring &fullName, short yearOfBirth,
                                  const std::wstring &address, const std::wstring &counterparty
 ) {
     auto optR = readerRepo.findByStringId(readerId);
     if (optR.has_value()) {
         reader_id id(readerId);
+        id.setAccess(access[0]);
         full_name name(fullName);
         short_value_object year(yearOfBirth);
         reader r(id, name, year, address, counterparty);

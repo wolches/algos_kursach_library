@@ -47,7 +47,7 @@ public:
         short yearOfBirth, const std::wstring &address, const std::wstring &counterparty
     );
     void editReader(
-        const std::wstring &readerId, const std::wstring &fullName,
+        const std::wstring &readerId, const std::wstring &access, const std::wstring &fullName,
         short yearOfBirth, const std::wstring &address, const std::wstring &counterparty
     );
     void removeReader(const std::wstring &readerId);

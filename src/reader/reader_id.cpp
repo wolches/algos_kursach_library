@@ -36,6 +36,13 @@ wchar_t reader_id::getAccess() const {
     return access;
 }
 
+void reader_id::setAccess(wchar_t value) {
+    if (value == L'А' || value == L'В' || value == L'В') {
+        access = value;
+    }
+    throw std::invalid_argument("Reader access is invalid");
+}
+
 short reader_id::getId() const {
     return id;
 }

@@ -23,15 +23,13 @@ int index(book_code value) {
 
 // Подсчетом
 void book_issue_repository::sort() {
-    auto temp = issues;
-    issues = single_linked_list<book_issue>();
     std::vector<int> counts(1000000);
     std::unordered_map<int, std::vector<book_issue>> values;
     for (int i = 0; i < 1000000; ++i) {
         counts[i] = 0;
         values[i] = std::vector<book_issue>();
     }
-    auto node = temp.getHead();
+    auto node = issues.getHead();
     while (node != nullptr) {
         auto value = node->value;
         int i = index(book_code(value.getBookCode()));
@@ -39,12 +37,13 @@ void book_issue_repository::sort() {
         values[i].push_back(value);
         node = node->next;
     }
-    for (int i = 0; i < 1000000; ++i) {
+    node = issues.getHead();
+    for (int i = 0; i < 1000000 && node != nullptr; ++i) {
         for (const auto &issue : values[i]) {
-            issues.add(issue);
+            node->value = issue;
+            node = node->next;
         }
     }
-    temp.clear();
 }
 
 void book_issue_repository::returnBook(const std::wstring &bookCode, const std::wstring &readerId, tm *date) {

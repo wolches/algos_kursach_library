@@ -91,13 +91,13 @@ void library_ui::handleAddReader() {
 void library_ui::handleEditReader() {
     printString(L"=== Редактирование данных читателя ===");
     try {
-        std::wstring readerAccess = readString(L"Тип читательского билета (формат: А / Ч / В): ");
-        short regYear = readInt(L"Год регистрации (формат: [NN]NN): ");
+        std::wstring readerId = readString(L"Читательский билет (формат: (А / Ч / В)NNNN-NN): ");
+        std::wstring access = readString(L"Новый тип читательского билета (формат: А / Ч / В): ");
         std::wstring fullName = readString(L"ФИО (формат: Фамилия Имя Отчество): ");
         short yearOfBirth = readInt(L"Год рождения (формат NNNN): ");
         std::wstring address = readString(L"Адрес: ");
         std::wstring counterparty = readString(L"Место работы: ");
-        service.registerReader(readerAccess, regYear, fullName, yearOfBirth, address, counterparty);
+        service.editReader(readerId, access, fullName, yearOfBirth, address, counterparty);
         printString(L"Читатель успешно зарегистрирован!");
     } catch (const std::exception &e) {
         printString(L"Ошибка: ");
@@ -377,7 +377,7 @@ void library_ui::handleClearBooks() {
     try {
         std::wstring confirm = readString(L"Вы уверены? (yYдД/nNнН):");
         if (confirm == L"y" || confirm == L"Y" || confirm == L"д" || confirm == L"Д") {
-            service.clearReaders();
+            service.clearBooks();
             service.clearIssues();
             std::wcout << L"Данные о книгах очищены!" << std::endl;
         }

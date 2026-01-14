@@ -59,9 +59,9 @@ bool book_code::operator<(const book_code &other) const {
 }
 
 bool book_code::operator==(const book_code &other) const {
-    int self = categoryId * 1000 + bookId;
-    int otherCategoryId = other.categoryId * 1000 + other.bookId;
-    return self < otherCategoryId;
+    int selfId = categoryId * 1000 + bookId;
+    int otherId = other.categoryId * 1000 + other.bookId;
+    return selfId == otherId;
 }
 
 
